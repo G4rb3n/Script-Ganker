@@ -1,2 +1,2 @@
 # Script-Ganker
-恶意脚本检测分类工具
+Linux恶意脚本检测分类工具
