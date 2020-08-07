@@ -29,5 +29,5 @@ rule linux_miner_sysupdataminer_script_gen
       $c3 = "AAAAB3NzaC1yc2EAAAADAQABAAABAQC9WKiJ7yQ6HcafmwzDMv1RKxPdJI"
 
    condition:
-      ( filesize < 50KB ) and ( ( 3 of ($s*) ) or ( 2 of ($x*) ) or ( 2 of ($c*) ) )
+      ( filesize < 50KB ) and ( ( ( 3 of ($s*) ) or ( 2 of ($x*) ) ) and ( 2 of ($c*) ) )
 }
