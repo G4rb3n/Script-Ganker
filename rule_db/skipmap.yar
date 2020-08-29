@@ -1,4 +1,4 @@
-// skipmap脚本通配规则
+// SkipMap脚本通配规则
 rule linux_miner_skipmap_script_gen
 {
     meta:

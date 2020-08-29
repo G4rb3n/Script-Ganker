@@ -1,4 +1,4 @@
-// StartMiner脚本通配规则
+// SysUpdataMiner脚本通配规则
 rule linux_miner_sysupdataminer_script_gen
 {
     meta:

