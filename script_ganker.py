@@ -67,17 +67,17 @@ def check_similarity(family_name):
 			score = similarity
 			similar_sample_path = sample_path
 
-	return similar_sample_path
+	return similar_sample_path, score
 
 
 # 更新代码提取函数
-def parse_modification(similar_sample_path):
+def parse_modification(similar_sample_path, score):
 	
 	add_count = 0
 	change_count = 0
 
 	# 与相似度最高的样本进行代码改动比较
-	print("[+] compare with the similar sample --> '%s'\n" % (Style.BRIGHT + Fore.RED + os.path.basename(similar_sample_path)))
+	print("[+] compare with the similar sample --> %s: %.1f%%\n" % (Style.BRIGHT + Fore.RED + os.path.basename(similar_sample_path), score))
 	
 	# 读取脚本内容，及相似样本的内容
 	with open(script_path, 'r', encoding='utf8', errors='ignore') as script_fp:
@@ -139,11 +139,11 @@ if __name__ == '__main__':
 		print("[+] not found malware family\n")
 	
 	# 检测脚本与已知恶意样本的相似度
-	similar_sample_path = check_similarity(family_name)
+	similar_sample_path, score = check_similarity(family_name)
 
-	if len(similar_sample_path) > 0:
+	if score > 60:
 		# 提取脚本中更新的恶意代码
-		parse_modification(similar_sample_path)
+		parse_modification(similar_sample_path, score)
 		# 打开 html 文件
 		html_path = os.getcwd() + "\\compare.html"
 		os.system(html_path)
