@@ -20,5 +20,5 @@ rule linux_miner_rainbowminer_script_gen
       $x2 = "47.106.187.104"
 
    condition:
-      ( filesize < 50KB ) and ( ( 4 of ($s*) ) or ( 1 of ($x*) ) )
+      ( filesize < 50KB ) and ( ( 4 of ($s*) ) and ( 1 of ($x*) ) )
 }
