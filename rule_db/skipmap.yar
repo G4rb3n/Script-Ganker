@@ -13,8 +13,8 @@ rule linux_miner_skipmap_script_gen
       $s3 = "/bin/cur"
 
       $c1 = "pm.ipfswallet.tk"
-      $c2 = "a.powerofwish.com"
+      $c2 = "a.powreofwish.com"
 
    condition:
-      ( filesize < 10KB ) and ( all of ($s*) ) and ( 1 of ($c*) )
+      ( filesize < 10KB ) and ( 3 of ($s*) ) and ( 1 of ($c*) )
 }
