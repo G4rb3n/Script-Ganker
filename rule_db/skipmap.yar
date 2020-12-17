@@ -5,7 +5,7 @@ rule linux_miner_skipmap_script_gen
         description = "skipmap shell script general"
         author = "G4rb3n"
         reference = "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload"
-        date = "2020-8-7"
+        date = "2020-12-16"
 
    strings:
       $s1 = "chmod +x /var/lib/"

