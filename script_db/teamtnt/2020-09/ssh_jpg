@@ -24,7 +24,7 @@ apt-get install --reinstall -y curl wget bash make gcc 2>/dev/null 1>/dev/null
 yum reinstall -y curl wget bash make gcc 2>/dev/null 1>/dev/null
 apk update 2>/dev/null 1>/dev/null
 apk add curl wget bash make gcc 2>/dev/null 1>/dev/null
-	
+
 function loadthisfile(){
 GETFROM=$1
 PUTITTO=$2
