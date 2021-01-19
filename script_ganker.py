@@ -77,7 +77,7 @@ def parse_modification(similar_sample_path, score):
 	change_count = 0
 
 	# 与相似度最高的样本进行代码改动比较
-	print("[+] compare with the similar sample --> %s: %.1f%%\n" % (Style.BRIGHT + Fore.RED + os.path.basename(similar_sample_path), score))
+	print("[+] compare with the similar sample --> %s --> %.1f%%\n" % (Style.BRIGHT + Fore.RED + similar_sample_path, score))
 	
 	# 读取脚本内容，及相似样本的内容
 	with open(script_path, 'r', encoding='utf8', errors='ignore') as script_fp:
@@ -141,7 +141,7 @@ if __name__ == '__main__':
 	# 检测脚本与已知恶意样本的相似度
 	similar_sample_path, score = check_similarity(family_name)
 
-	if score > 60:
+	if score > 30:
 		# 提取脚本中更新的恶意代码
 		parse_modification(similar_sample_path, score)
 		# 打开 html 文件
