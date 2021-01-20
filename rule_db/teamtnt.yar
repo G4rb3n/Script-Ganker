@@ -34,7 +34,7 @@ rule linux_miner_teamtnt_script_ssh
       $x7 = "borg.wtf"
 
    condition:
-      ( filesize < 20KB ) and ( ( 2 of ($s*) ) or ( 3 of ($c*) ) or ( 2 of ($c*) ) )
+      ( filesize < 20KB ) and ( ( 2 of ($s*) ) or ( 3 of ($c*) ) or ( 2 of ($x*) ) )
 }
 
 // TeamTNT母体脚本规则

@@ -141,7 +141,7 @@ if __name__ == '__main__':
 	# 检测脚本与已知恶意样本的相似度
 	similar_sample_path, score = check_similarity(family_name)
 
-	if score > 30:
+	if score > 20:
 		# 提取脚本中更新的恶意代码
 		parse_modification(similar_sample_path, score)
 		# 打开 html 文件
