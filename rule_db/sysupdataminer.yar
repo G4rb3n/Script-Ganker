@@ -4,7 +4,7 @@ rule linux_miner_sysupdataminer_script_gen
     meta:
         description = "sysupdataminer script general"
         author = "G4rb3n"
-        reference1 = "https://www.freebuf.com/articles/system/172987.html"
+        reference1 = "https://s.tencent.com/research/report/904.html"
         reference2 = "https://s.tencent.com/research/report/1012.html"
         date = "2021-1-25"
 
