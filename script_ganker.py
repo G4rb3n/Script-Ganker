@@ -31,7 +31,7 @@ def yara_scan(script_path):
 	if len(matches) > 0:
 		for match in matches:
 			# 筛选出病毒家族名
-			family_name += re.findall(r"linux_.+_(.+)_.+_.+", str(match))[0]
+			family_name += re.findall(r"linux_miner_(.+)_.+_.+", str(match))[0]
 
 	# 返回检测出的病毒家族名
 	return family_name

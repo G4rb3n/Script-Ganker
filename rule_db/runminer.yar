@@ -1,4 +1,4 @@
-// z0Miner脚本通配规则
+// Runminer脚本通配规则
 rule linux_miner_runminer_script_gen
 {
     meta:

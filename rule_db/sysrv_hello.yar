@@ -1,11 +1,14 @@
-// LDRMiner脚本通配规则
-rule linux_miner_ldrminer_script_gen
+// Sysrv-hello脚本通配规则
+rule linux_miner_sysrv_hello_script_gen
 {
    meta:
-      description = "ldrminer script general"
+      description = "sysrv-hello script general"
       author = "G4rb3n"
-      date = "2021-1-7"
-      md5_2101 = "236D7925CFAFC1F643BABDB8E48966BF"
+      date = "2021-1-26"
+      md5_2012 = "236D7925CFAFC1F643BABDB8E48966BF"
+      md5_2101 = "75D40E5A0607DCC4293E86BBFA14B252"
+      md5_2101 = "BC2530A3B8DC90ACA460A737A28CF54B"
+      reference = "https://s.tencent.com/research/report/1234.html"
 
    strings:
       $s1 = "cc="
